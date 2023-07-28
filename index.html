@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title> Generador de Combinaciones </title>
+  </head>
+  <body>
+
+    <div class="container">
+
+        <div class="card my-3">
+            <div class="card-header"> 
+                <div class="h3 text-center"> Generador de Combinaciones </div> 
+            </div>
+            
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="form-group col-6 my-2">
+                        <label class="col-form-label">Generar </label>
+                        <select id="opciones" class="form-control">
+                            <option value="Tripleta">Tripletas </option>
+                            <option value="Pale">Paleces </option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    
+                    <div class="form-group col">
+                        <label class="col-form-label">Primer Numero </label>
+                        <input type="text" class="form-control" id="num">
+                    </div>
+            
+                    <div class="form-group col">
+                        <label class="col-form-label">Segundo Numero </label>
+                        <input type="text" class="form-control" id="num2">
+                    </div>
+            
+                    <div class="form-group text-end my-2">
+                        <button id="btgenerar" class="btn btn-success">Generar Combinaciones </button>
+                    </div>
+                    
+                </div>
+        
+        
+            </div>
+    
+        </div>
+
+
+        <div id="resultado">
+        
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>
+
+
+
+<script>
+
+    document.getElementById("btgenerar").addEventListener("click", e => {
+
+        let num = document.getElementById("num").value;
+        let num2 = document.getElementById("num2").value;
+        let lista = document.getElementById("lista");
+
+        document.getElementById("resultado").innerHTML = "";
+
+        if(num != "")
+        {
+            for (let index = 1; index <= 100; index++) {
+    
+                if(document.getElementById("opciones").value == "Pale")
+                {
+                    document.getElementById("resultado").innerHTML += num + " - " + index + "<br>"; 
+                }
+                else
+                {
+                    if(num2 != "")
+                        document.getElementById("resultado").innerHTML += num + " - " + num2 + " - " + index + "<br>";                     
+                }
+            }
+
+        }
+        else
+            alert("Primero debe agregar el numero a combinar.")
+
+    })
+
+    document.getElementById("opciones").addEventListener("change",  ()=> {
+        
+        document.getElementById("resultado").innerHTML = "";
+        document.getElementById("num").value = "";
+        document.getElementById("num2").value = "";
+
+        if(document.getElementById("opciones").value == "Pale")
+            document.getElementById("num2").disabled = true;
+        else
+            document.getElementById("num2").disabled = false;
+    })
+
+
+
+</script>
